@@ -1,56 +1,35 @@
-# Offline Reinforcement Learning with Implicit Q-Learning
+# Provable Benefits of Unsupervised Data Sharing in Offline RL
 
-This repository contains the official implementation of [Offline Reinforcement Learning with Implicit Q-Learning](https://arxiv.org/abs/2110.06169) by [Ilya Kostrikov](https://kostrikov.xyz), [Ashvin Nair](https://ashvin.me/), and [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/).
+This is a jax implementation of LPD on [Datasets for Deep Data-Driven Reinforcement Learning (D4RL)](https://github.com/rail-berkeley/d4rl), the corresponding paper is [Flow to Control: Offline Reinforcement Learning with Lossless Primitive Discovery](file:///Users/yangyiqin/Downloads/26286-Article%20Text-30349-1-2-20230626-2.pdf).
 
-If you use this code for your research, please consider citing the paper:
+![Framwork](framwork.png)
+
+## Quick Start
+For experiments on D4RL, our code is implemented based on IQL:
+
+First train the flow model:
+```shell
+$ python3 flow.py
 ```
-@article{kostrikov2021iql,
-    title={Offline Reinforcement Learning with Implicit Q-Learning},
-    author={Ilya Kostrikov and Ashvin Nair and Sergey Levine},
-    year={2021},
-    archivePrefix={arXiv},
-    primaryClass={cs.LG}
+
+Then, run the following code:
+```shell
+$ python3 train_offline.py --env_name=antmaze-large-play-v0 --config=configs/antmaze_config.py --eval_episodes=10 --eval_interval=5000
+```
+
+## Citing
+If you find this open source release useful, please reference in your paper (it is our honor):
+```
+@inproceedings{yang2023flow,
+  title={Flow to control: Offline reinforcement learning with lossless primitive discovery},
+  author={Yang, Yiqin and Hu, Hao and Li, Wenzhe and Li, Siyuan and Yang, Jun and Zhao, Qianchuan and Zhang, Chongjie},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={37},
+  number={9},
+  pages={10843--10851},
+  year={2023}
 }
 ```
 
-For a PyTorch reimplementation see https://github.com/rail-berkeley/rlkit/tree/master/examples/iql
-
-## How to run the code
-
-### Install dependencies
-
-```bash
-pip install --upgrade pip
-
-pip install -r requirements.txt
-
-# Installs the wheel compatible with Cuda 11 and cudnn 8.
-pip install --upgrade "jax[cuda]>=0.2.27" -f https://storage.googleapis.com/jax-releases/jax_releases.html
-```
-
-Also, see other configurations for CUDA [here](https://github.com/google/jax#pip-installation-gpu-cuda).
-
-### Run training
-
-Locomotion
-```bash
-python train_offline.py --env_name=halfcheetah-medium-expert-v2 --config=configs/mujoco_config.py
-```
-
-AntMaze
-```bash
-python train_offline.py --env_name=antmaze-large-play-v0 --config=configs/antmaze_config.py --eval_episodes=100 --eval_interval=100000
-```
-
-Kitchen and Adroit
-```bash
-python train_offline.py --env_name=pen-human-v0 --config=configs/kitchen_config.py
-```
-
-Finetuning on AntMaze tasks
-```bash
-python train_finetune.py --env_name=antmaze-large-play-v0 --config=configs/antmaze_finetune_config.py --eval_episodes=100 --eval_interval=100000 --replay_buffer_size 2000000
-```
-
-## Misc
-The implementation is based on [JAXRL](https://github.com/ikostrikov/jaxrl).
+## Note
++ If you have any questions, please contact me: yangyiqi19@mails.tsinghua.edu.cn. 
