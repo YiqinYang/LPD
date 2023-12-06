@@ -2,7 +2,7 @@
 
 This is a jax implementation of LPD on [Datasets for Deep Data-Driven Reinforcement Learning (D4RL)](https://github.com/rail-berkeley/d4rl), the corresponding paper is [Flow to Control: Offline Reinforcement Learning with Lossless Primitive Discovery](file:///Users/yangyiqin/Downloads/26286-Article%20Text-30349-1-2-20230626-2.pdf).
 
-![Framwork](framwork.png)
+![Framwork](framework.png)
 
 ## Quick Start
 For experiments on D4RL, our code is implemented based on IQL:
